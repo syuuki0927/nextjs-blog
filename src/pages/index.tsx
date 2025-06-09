@@ -2,6 +2,7 @@ import Head from "next/head";
 import Image from "next/image";
 import localFont from "next/font/local";
 import styles from "@/styles/Home.module.css";
+import Link from "next/link";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -66,6 +67,9 @@ export default function Home() {
             >
               Read our docs
             </a>
+          </div>
+          <div>
+            <Link href="/posts/first-post">Go to First Post</Link>
           </div>
         </main>
         <footer className={styles.footer}>
