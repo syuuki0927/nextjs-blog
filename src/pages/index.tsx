@@ -27,7 +27,7 @@ export default function Home() {
         className={`${styles.page} ${geistSans.variable} ${geistMono.variable}`}
       >
         <main className={styles.main}>
-          <Link href="/Home">Home</Link>
+          <Link href="/home">Home</Link>
         </main>
       </div>
     </>
