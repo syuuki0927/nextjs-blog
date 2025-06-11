@@ -1,4 +1,6 @@
+import { zodResolver } from "@hookform/resolvers/zod";
 import { NextPage } from "next";
+import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 const schema = z.object({
@@ -12,19 +14,28 @@ const schema = z.object({
 type Schema = z.infer<typeof schema>;
 
 const SpecialtyForm: NextPage = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<Schema>({ resolver: zodResolver(schema) });
+
+  const onSubmit = handleSubmit((data: Schema) => {
+    console.log(data);
+  });
+
   return (
     <>
-      {/* <form onSubmit={onSubmit}> */}
-      <form>
+      <form onSubmit={onSubmit}>
         <div>
           <label htmlFor="postalCode">郵便番号: </label>
-          <input id="postalCode" />
-          {/* <p>{errors.postalCode?.message}</p> */}
+          <input id="postalCode" {...register("postalCode")} />
+          <p>{errors.postalCode?.message}</p>
         </div>
         <div>
           <label htmlFor="localSpecialty">特産品: </label>
-          <input id="localSpecialty" />
-          {/* <p>{errorsToRecord.localSpecialty?.message}</p> */}
+          <input id="localSpecialty" {...register("localSpecialty")} />
+          <p>{errors.localSpecialty?.message}</p>
         </div>
         <button type="submit">送信</button>
       </form>
